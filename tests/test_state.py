@@ -12,8 +12,6 @@ from puzzle_core.state import (
     row_col,
 )
 
-# TODO：2026-11-23 完成测试代码，通过后提交上传
-
 @pytest.mark.parametrize("raw_text", [
     "1 2 3 | 4 5 6 | 7 8 0",
     "1,2,3\n4,5,6\n7,8,0",
