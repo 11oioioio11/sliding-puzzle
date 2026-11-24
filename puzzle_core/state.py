@@ -1,4 +1,13 @@
-"""状态层：类型、解析、校验、可解性。只依赖 constants。"""
+"""
+1. 状态层：拼图核心状态的表示与基础操作。
+
+2. 本模块负责状态（一维元组）的定义、解析、合法性校验、
+以及影响搜索算法的数学属性（如逆序数、可解性判断）。
+
+3. 架构依赖：
+    1. 仅依赖 constants 模块，绝对不导入 search 等其他模块，防范循环引用。
+    2. 供搜索算法（search）与展示工具（board_utils）调用。
+"""
 
 import re
 from .constants import BLANK, CELLS, GOAL, SIZE

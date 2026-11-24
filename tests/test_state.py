@@ -1,4 +1,6 @@
-"""state.py 的单元测试。"""
+"""
+1. state.py 的单元测试
+"""
 
 import pytest
 
@@ -12,6 +14,7 @@ from puzzle_core.state import (
     row_col,
 )
 
+# 测试 parse_state 的容错性
 @pytest.mark.parametrize("raw_text", [
     "1 2 3 | 4 5 6 | 7 8 0",
     "1,2,3\n4,5,6\n7,8,0",
@@ -19,24 +22,29 @@ from puzzle_core.state import (
 def test_parse_state_flexible_input(raw_text):
     assert parse_state(raw_text) == GOAL
 
+# 测试 parse_state 对无效输入的处理
 @pytest.mark.parametrize("text",["1 2 3", "1 2 3 4 5 6 7 8 8", "1 2 3 4 5 6 7 8 9", "-1 2 3 4 5 6 7 8 0"], )
 def test_parse_state_rejects_invalid(text):
     with pytest.raises(ValueError):
         parse_state(text)
 
+# 测试目标状态判断
 def test_is_goal():
     assert is_goal(GOAL)
     assert not is_goal((1, 2, 3, 4, 5, 6, 7, 0, 8))
 
+# 测试逆序数计算是否正确地忽略了空格（0）
 def test_inversions_ignores_blank():
     assert inversions((2, 1, 3, 4, 5, 6, 7, 8, 0)) == 1
     assert inversions((GOAL)) == 0
 
+# 测试拼图可解性的判断逻辑
 def test_is_solvable():
     assert is_solvable((1, 2, 3, 4, 5, 6, 7, 8, 0))
     assert is_solvable((3, 1, 2, 4, 5, 6, 7, 8, 0))
     assert not is_solvable((2, 1, 3, 4, 5, 6, 7, 8, 0))
 
+# 测试一维下标与二维坐标（行列）的转换
 def test_blank_index_and_row_col():
     state = parse_state("1 2 3 4 5 6 0 7 8")
     assert blank_index(state) == 6
