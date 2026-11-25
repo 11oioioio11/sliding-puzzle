@@ -1,15 +1,18 @@
-from puzzle_core.board_utils import print_state
-from puzzle_core.constants import GOAL
-from puzzle_core.state import is_solvable
+"""命令行入口：演示用 BFS 求解。"""
 
-INITIAL_STATE = (1, 2, 3, 4, 5, 6, 0, 7, 8)
+from puzzle_core.board_utils import print_result, print_state
+from puzzle_core.search.bfs import bfs
+
+INITIAL_STATE = (1, 6, 2, 5, 7, 3, 0, 4, 8)
+
 
 def main() -> None:
     print("初始状态:")
     print_state(INITIAL_STATE)
-    print("目标状态:")
-    print_state(GOAL)
-    print(f"可解：{is_solvable(INITIAL_STATE)}")
+
+    result = bfs(INITIAL_STATE)
+    print_result(result, trace=True)
+
 
 if __name__ == "__main__":
     main()
