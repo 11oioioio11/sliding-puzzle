@@ -19,19 +19,18 @@ python main.py
 ```text
 初始状态:
 ----------------
-| 1 | 2 | 3 |
-| 4 | 5 | 6 |
-|   | 7 | 8 |
+|  1 |  6 |  2 |
+|  5 |  7 |  3 |
+|    |  4 |  8 |
 ----------------
 
-目标状态:
-----------------
-| 1 | 2 | 3 |
-| 4 | 5 | 6 |
-| 7 | 8 |   |
-----------------
+========================================
+算法：bfs
+是否可解：True
+步数：10
+动作：RIGHT -> UP -> UP -> RIGHT -> DOWN -> LEFT -> LEFT -> DOWN -> RIGHT -> RIGHT
 
-可解：True
+如果print_result参数trace为True，会逐步打印每一步的棋盘，最后一行是扩展数、生成数、队列峰值和耗时
 ```
 
 ### 运行测试
@@ -59,10 +58,12 @@ sliding-puzzle/
 │  ├─ heuristics.py         # 启发式函数（待实现）
 │  └─ search/
 │     ├─ __init__.py
-│     └─ base.py            # Node、SearchResult、路径还原
+│     ├─ base.py            # Node、SearchResult、路径还原
+│     └─ bfs.py             # 广度优先搜索
 ├─ tests/
 │  ├─ test_state.py
-│  └─ test_base.py
+│  ├─ test_base.py
+│  └─ test_bfs.py
 ├─ requirements-dev.txt     # 仅测试依赖
 ├─ README.md
 ├─ LICENSE
@@ -81,7 +82,7 @@ sliding-puzzle/
 - [x] 目标判定与可解性判定（逆序数）
 - [x] 邻域算子（空格四方向移动）
 - [x] 搜索结点 `Node`、结果 `SearchResult`、路径还原
-- [ ] 广度优先搜索（BFS）
+- [x] 广度优先搜索（BFS）
 - [ ] 深度优先搜索（DFS）
 - [ ] 最佳优先搜索（GBFS / A*）
 - [ ] 启发式函数：错位数、曼哈顿距离
